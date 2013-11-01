@@ -1,0 +1,120 @@
+        /* Tough Animation Zone project namespace */                        
+        namespace taz                                                       
+        {                                                                   
+          /* Culling state store class */                               
+          class cull
+          {
+          public:
+            /* Culling states enumeration type */
+            enum COORDINATE_SYSTEM
+            {
+              NONE, // No cull faces
+              CW,   // Clock wise face culling
+              CCW,  // Counter clock wise face culling
+            };
+          private:
+            /* Store field for culling state */
+            CULL_STATE CullStateValue;
+          public:
+            /* Class constructor.
+             * ARGUMENTS:
+             *   - scalar culling state value to be assigned:
+             *       CULL_STATE NewCullStateValue;
+             */
+            cull( CULL_STATE NewCullStateValue = NONE ) :
+              CullStateValue(NewCullStateValue)
+            {
+            } /* End of 'cull' function */
+
+            /* Assignment for scalar value operator function.
+             * ARGUMENTS:
+             *   - scalar culling state value to be assigned:
+             *       CULL_STATE NewCullStateValue;
+             * RETURNS:
+             *   (cull &) self reference.
+             */
+            cull & operator=( CULL_STATE NewCullStateValue )
+            {
+              CullStateValue = NewCoordSysValue;
+              return *this;
+            } /* End of 'operator=' function */
+
+            /* Conversion for scalar value obtain function.
+             * ARGUMENTS: None.
+             * RETURNS:
+             *   (CULL_STATE) scalar culling state value.
+             */
+            operator CULL_STATE( void )
+            {
+              return CuuStateValue;
+            } /* End of 'operator CULL_STATE' function */
+          }; /* End of 'cull' class */
+        } /* End of 'taz' namespace */
+  allowed code like this:
+    taz::cull CullState;                                                                          
+
+    Ani->Set(taz::cull::NONE);
+    Ani->Set(taz::cull::CCW);
+    taz::cull CS(taz::cull::CW);
+    Ani->Set(CS);
+    ... where:
+    void taz::render::Set( taz::cull NewCullState )
+    {
+      this->CullState = NewCullState;
+    }
+
+
+DECLARE_ST(cs, COORD_SYSTEM, {WORLD, CAMERA, SCREEN});
+#define DECLARE_ST(a, b, c)
+  class a
+  {
+  public:
+    enum b c;
+  private:
+    /* Store field for coordinate system type */
+    b Value;
+  public:
+    /* Class constructor.
+     * ARGUMENTS:
+     *   - scalar coordinate system type value to be assigned:
+     *       COORDINATE_SYSTEM NewCoordSysValue;
+     */
+    a( b NewValue ) :
+      Value(NewValue)
+    {
+    } /* End of 'a' function */
+
+    /* Assignment for scalar value operator function.
+     * ARGUMENTS:
+     *   - scalar coordinate system type value to be assigned:
+     *       b NewValue;
+     * RETURNS:
+     *   (a &) self reference.
+     */
+    a & operator=( b NewValue )
+    {
+      Value = NewValue;
+      return *this;
+    } /* End of 'operator=' function */
+
+    /* Conversion for scalar value obtain function.
+     * ARGUMENTS: None.
+     * RETURNS:
+     *   (b) scalar coordinate system type value.
+     */
+    operator b( void )
+    {
+      return Value;
+    } /* End of 'operator b' function */
+  }; /* End of 'cs' class */
+
+
+
+
+tlr::matr m = tlr::matr::RotateX(45);
+tlr::matr m;
+m.RotateX(45);
+
+tlr::matr m = tlr::matr().RotateX(45);
+
+tlr::matr m = tlr::matr::RotateX(45) * tlr::matr::Translate(1, 0, 45);
